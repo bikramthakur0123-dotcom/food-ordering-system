@@ -1,0 +1,9 @@
+{
+  "name": "Biteora Food Ordering",
+  "short_name": "Biteora",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101827",
+  "theme_color": "#ff7a18",
+  "icons": []
+}

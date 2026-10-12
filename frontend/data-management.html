@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101827" />
+    <title>Biteora Data Management</title>
+    <link rel="stylesheet" href="api-console.css" />
+    <link rel="stylesheet" href="database-records.css" />
+    <link rel="stylesheet" href="data-management.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="dashboard.html"><span class="brand-mark">🍔</span><span><strong>Biteora</strong><small>Data management</small></span></a>
+        <div class="sidebar-heading"><span>Manage data</span></div>
+        <div class="record-nav" id="manageNav">
+          <button class="record-nav-item active" data-table="users"><span class="record-icon">◉</span><span><strong>Users</strong><small id="usersCount">0 records</small></span></button>
+          <button class="record-nav-item" data-table="menu_items"><span class="record-icon">▦</span><span><strong>Menu items</strong><small id="menuItemsCount">0 records</small></span></button>
+          <button class="record-nav-item" data-table="orders"><span class="record-icon">▤</span><span><strong>Orders</strong><small id="ordersCount">0 records</small></span></button>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span><span>Database</span><strong id="databaseStatus">Loading...</strong></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar"><div><p class="eyebrow">Developer tools / Operations</p><h1>Data management</h1></div><div class="topbar-actions"><a href="database-records.html" class="back-link">← View records</a><button class="refresh-button" id="refreshButton">↻ Refresh</button></div></header>
+
+        <section class="management-layout">
+          <div class="records-panel panel">
+            <div class="records-toolbar"><div><span class="panel-kicker">Table</span><h2 id="tableTitle">Users</h2></div><div class="toolbar-actions"><label class="search-field" for="recordSearch"><span>⌕</span><input id="recordSearch" type="search" placeholder="Search" /></label><button class="primary-small" id="addButton">+ Add record</button></div></div>
+            <div class="table-wrap"><table><thead id="recordHead"></thead><tbody id="recordBody"><tr><td class="table-state" colspan="6">Loading records...</td></tr></tbody></table></div>
+            <div class="records-footer"><span id="recordRange">Showing 0 records</span><span>Changes are saved to SQLite</span></div>
+          </div>
+
+          <aside class="editor-panel panel" id="editorPanel">
+            <div class="editor-heading"><div><span class="panel-kicker" id="editorKicker">New record</span><h2 id="editorTitle">Add user</h2></div><button class="close-editor" id="closeEditorButton" title="Close editor">×</button></div>
+            <p class="editor-note" id="editorNote">Create a new record in the users table.</p>
+            <form id="recordForm"></form>
+            <div class="editor-actions"><button class="cancel-button" type="button" id="cancelButton">Cancel</button><button class="save-button" type="submit" form="recordForm" id="saveButton">Save record</button></div>
+          </aside>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script>
+      const currentUserEmail = (localStorage.getItem('userEmail') || '').toLowerCase();
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+      if (!isLoggedIn || !currentUserEmail) {
+        window.location.href = 'index.html';
+      } else if (currentUserEmail !== 'admin@biteora.com') {
+        window.location.href = 'dashboard.html';
+      }
+    </script>
+    <script src="data-management.js"></script>
+  </body>
+</html>

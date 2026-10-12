@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101827" />
+    <title>Biteora API Console</title>
+    <link rel="stylesheet" href="api-console.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="dashboard.html">
+          <span class="brand-mark">🍔</span>
+          <span><strong>Biteora</strong><small>API console</small></span>
+        </a>
+
+        <div class="sidebar-heading"><span>Workspace</span><button id="newRequestButton" title="New request">+</button></div>
+        <button class="workspace-button active"><span class="workspace-dot"></span> Local development</button>
+
+        <div class="sidebar-heading endpoint-heading"><span>Endpoints</span><span class="endpoint-count">7</span></div>
+        <div class="endpoint-list" id="endpointList">
+          <button class="endpoint-item active" data-method="GET" data-path="/api/health"><span class="method get">GET</span><span><strong>Health check</strong><small>/api/health</small></span></button>
+          <button class="endpoint-item" data-method="GET" data-path="/api/menu"><span class="method get">GET</span><span><strong>List menu</strong><small>/api/menu</small></span></button>
+          <button class="endpoint-item" data-method="POST" data-path="/api/login" data-body='{"email":"admin@biteora.com","password":"admin123"}'><span class="method post">POST</span><span><strong>Sign in</strong><small>/api/login</small></span></button>
+          <button class="endpoint-item" data-method="POST" data-path="/api/register" data-body='{"name":"Test User","email":"test@example.com","password":"secret123"}'><span class="method post">POST</span><span><strong>Create account</strong><small>/api/register</small></span></button>
+          <button class="endpoint-item" data-method="GET" data-path="/api/orders"><span class="method get">GET</span><span><strong>List orders</strong><small>/api/orders</small></span></button>
+          <button class="endpoint-item" data-method="POST" data-path="/api/orders" data-body='{"customer_name":"Test User","email":"test@example.com","phone":"9800000000","address":"Biteora Street","city":"Kathmandu","pin":"44600","payment":"cod","items":[]}'><span class="method post">POST</span><span><strong>Create order</strong><small>/api/orders</small></span></button>
+          <button class="endpoint-item" data-method="POST" data-path="/api/google-login" data-body='{"credential":"paste-google-credential"}'><span class="method post">POST</span><span><strong>Google login</strong><small>/api/google-login</small></span></button>
+        </div>
+
+        <div class="sidebar-footer"><span class="status-dot"></span><span>Server connection</span><strong id="serverStatus">Checking...</strong></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div><p class="eyebrow">Developer tools / Requests</p><h1>API testing console</h1></div>
+          <div class="topbar-actions"><a href="database-records.html" class="back-link">Database records →</a><a href="data-management.html" class="back-link">Manage data →</a><a href="dashboard.html" class="back-link">← Back to app</a><button class="icon-button" id="clearHistoryButton" title="Clear request history">⌫</button></div>
+        </header>
+
+        <section class="request-card panel">
+          <div class="panel-topline"><div><span class="panel-kicker">Request builder</span><h2 id="requestTitle">Health check</h2></div><span class="saved-pill">● Local</span></div>
+          <div class="url-row">
+            <select id="methodSelect" aria-label="HTTP method"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select>
+            <input id="urlInput" type="url" value="/api/health" aria-label="Request URL" />
+            <button class="send-button" id="sendButton"><span>Send request</span><span>↗</span></button>
+          </div>
+          <div class="request-tabs"><button class="tab active" data-tab="params">Params <span>0</span></button><button class="tab" data-tab="headers">Headers <span>1</span></button><button class="tab" data-tab="body">Body</button></div>
+          <div class="tab-panel active" id="paramsPanel"><div class="empty-tab"><span>⌕</span><div><strong>No query parameters</strong><p>Add parameters directly to the URL when you need filters or pagination.</p></div></div></div>
+          <div class="tab-panel" id="headersPanel"><div class="field-row"><label for="contentTypeInput">Content-Type</label><input id="contentTypeInput" value="application/json" /></div><div class="field-row"><label for="authInput">Authorization</label><input id="authInput" placeholder="Bearer token (optional)" /></div></div>
+          <div class="tab-panel" id="bodyPanel"><label class="editor-label" for="bodyInput">JSON body</label><textarea id="bodyInput" spellcheck="false" placeholder="{\n  &quot;key&quot;: &quot;value&quot;\n}"></textarea><p class="helper-text">Body is sent for methods that support a request payload.</p></div>
+        </section>
+
+        <section class="response-card panel">
+          <div class="panel-topline response-topline"><div><span class="panel-kicker">Response</span><h2>Latest result</h2></div><div class="response-actions"><span class="response-time" id="responseTime">Waiting for request</span><button class="copy-button" id="copyResponseButton">Copy JSON</button></div></div>
+          <div class="response-meta" id="responseMeta"><span class="response-placeholder">Run a request to inspect the response.</span></div>
+          <pre class="response-output" id="responseOutput"><code>// Response payload will appear here</code></pre>
+        </section>
+
+        <section class="history-section"><div class="section-title"><div><span class="panel-kicker">Activity</span><h2>Request history</h2></div><span id="historyCount">0 requests</span></div><div class="history-list" id="historyList"><div class="history-empty">Your recent requests will be listed here.</div></div></section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script>
+      const currentUserEmail = (localStorage.getItem('userEmail') || '').toLowerCase();
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+      if (!isLoggedIn || !currentUserEmail) {
+        window.location.href = 'index.html';
+      } else if (currentUserEmail !== 'admin@biteora.com') {
+        window.location.href = 'dashboard.html';
+      }
+    </script>
+    <script src="api-console.js"></script>
+  </body>
+</html>

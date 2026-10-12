@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101827" />
+    <title>Biteora Database Records</title>
+    <link rel="stylesheet" href="api-console.css" />
+    <link rel="stylesheet" href="database-records.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="dashboard.html"><span class="brand-mark">🍔</span><span><strong>Biteora</strong><small>Database records</small></span></a>
+        <div class="sidebar-heading"><span>Data sources</span></div>
+        <div class="record-nav" id="recordNav">
+          <button class="record-nav-item active" data-table="users"><span class="record-icon">◉</span><span><strong>Users</strong><small id="usersCount">0 records</small></span></button>
+          <button class="record-nav-item" data-table="menu_items"><span class="record-icon">▦</span><span><strong>Menu items</strong><small id="menuItemsCount">0 records</small></span></button>
+          <button class="record-nav-item" data-table="orders"><span class="record-icon">▤</span><span><strong>Orders</strong><small id="ordersCount">0 records</small></span></button>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span><span>Database</span><strong id="databaseStatus">Loading...</strong></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div><p class="eyebrow">Developer tools / Storage</p><h1>Database records</h1></div>
+          <div class="topbar-actions"><a href="data-management.html" class="back-link">Manage data →</a><a href="api-console.html" class="back-link">← API console</a><button class="refresh-button" id="refreshButton">↻ Refresh</button></div>
+        </header>
+
+        <section class="records-summary">
+          <div class="summary-copy"><span class="panel-kicker">SQLite explorer</span><h2 id="tableTitle">Users</h2><p id="tableDescription">Accounts registered in Biteora.</p></div>
+          <div class="summary-stats"><div><strong id="visibleCount">0</strong><span>Visible records</span></div><div><strong id="lastUpdated">--:--</strong><span>Last refreshed</span></div></div>
+        </section>
+
+        <section class="records-panel panel">
+          <div class="records-toolbar"><div class="table-tabs" id="tableTabs"><button class="table-tab active" data-table="users">Users</button><button class="table-tab" data-table="menu_items">Menu items</button><button class="table-tab" data-table="orders">Orders</button></div><label class="search-field" for="recordSearch"><span>⌕</span><input id="recordSearch" type="search" placeholder="Search records" /></label></div>
+          <div class="table-wrap"><table><thead id="recordHead"></thead><tbody id="recordBody"><tr><td class="table-state" colspan="5">Loading records...</td></tr></tbody></table></div>
+          <div class="records-footer"><span id="recordRange">Showing 0 records</span><span>Read-only view</span></div>
+        </section>
+      </main>
+    </div>
+    <div class="record-modal" id="recordModal" hidden><div class="modal-backdrop" data-close-modal></div><section class="modal-card"><div class="modal-header"><div><span class="panel-kicker">Record details</span><h2 id="modalTitle">Record</h2></div><button class="modal-close" data-close-modal>×</button></div><pre id="modalContent"></pre></section></div>
+    <script>
+      const currentUserEmail = (localStorage.getItem('userEmail') || '').toLowerCase();
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+      if (!isLoggedIn || !currentUserEmail) {
+        window.location.href = 'index.html';
+      } else if (currentUserEmail !== 'admin@biteora.com') {
+        window.location.href = 'dashboard.html';
+      }
+    </script>
+    <script src="database-records.js"></script>
+  </body>
+</html>

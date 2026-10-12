@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biteora - Food Ordering</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-loader" id="dashboardLoader">
+      <div class="loader-box">
+        <div class="loader-food">🍔</div>
+        <h2>Biteora</h2>
+        <div class="loader-line"></div>
+        <p>Preparing your food experience...</p>
+      </div>
+    </div>
+
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-icon">🍔</div>
+        <div>
+          <span class="brand-name">Biteora</span>
+          <small>Food & More</small>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#menu" class="nav-link">Menu</a>
+        <a href="#offers" class="nav-link">Offers</a>
+        <a href="#orders" class="nav-link">Orders</a>
+        <a href="api-console.html" class="nav-link admin-only-link">API Console</a>
+        <a href="database-records.html" class="nav-link admin-only-link">Database</a>
+        <a href="data-management.html" class="nav-link admin-only-link">Manage Data</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button search-toggle" id="searchToggle" aria-label="Search">🔍</button>
+        <button class="icon-button" id="favoriteButton" aria-label="Favorites">♡</button>
+        <button class="cart-button" id="cartButton" aria-label="Shopping cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="profile-button" id="profileButton">
+          <span class="profile-avatar">👤</span>
+          <span class="profile-name" id="profileName">User</span>
+          <span>⌄</span>
+        </button>
+
+        <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <div class="search-container" id="searchContainer">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="search" id="foodSearch" placeholder="Search for pizza, momo, biryani..." autocomplete="off" />
+        <button id="closeSearch">×</button>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#home">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#menu">Menu</a>
+      <a href="#offers">Offers</a>
+      <a href="#orders">Orders</a>
+      <button id="mobileLogout">Logout</button>
+    </div>
+
+    <div class="profile-dropdown" id="profileDropdown">
+      <div class="profile-dropdown-header">
+        <div class="large-avatar">👤</div>
+        <div>
+          <strong id="dropdownUserName">Biteora User</strong>
+          <small id="dropdownUserEmail">user@email.com</small>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <button id="myOrdersButton">📦 My Orders</button>
+      <button id="myFavoritesButton">❤️ Favorites</button>
+      <button id="accountButton">⚙️ Account</button>
+      <a href="api-console.html" class="dropdown-link admin-only-link">🧪 API Console</a>
+      <a href="database-records.html" class="dropdown-link admin-only-link">▤ Database records</a>
+      <a href="data-management.html" class="dropdown-link admin-only-link">✎ Manage data</a>
+      <button class="logout-button" id="logoutButton">🚪 Logout</button>
+    </div>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-content">
+          <span class="section-badge">Fresh. Fast. Flavorful.</span>
+          <h1>Craving something delicious?</h1>
+          <p>Enjoy premium food from local favorites, prepared with care and delivered hot to your door.</p>
+          <div class="hero-actions">
+            <button id="showcaseButton" class="primary-button">Order Now</button>
+            <button class="secondary-button">View Menu</button>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <strong>6k+</strong>
+              <span>Orders</span>
+            </div>
+            <div>
+              <strong>4.9/5</strong>
+              <span>Rating</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>Support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Featured food plate">
+          <div class="plate-glow"></div>
+          <div class="hero-plate">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" alt="Featured burger plate" />
+          </div>
+          <div class="floating-card dish-card one">
+            <div class="card-emoji">🍔</div>
+            <span>Chicken Burger</span>
+            <strong>₹160</strong>
+          </div>
+          <div class="floating-card dish-card two">
+            <div class="card-emoji">🍕</div>
+            <span>Cheese Pizza</span>
+            <strong>₹300</strong>
+          </div>
+          <div class="floating-card badge-card">
+            <span>🔥 Bestseller</span>
+            <strong>Chef Special Burger</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="categories" id="categories">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Browse</span>
+            <h2>Popular Categories</h2>
+          </div>
+        </div>
+
+        <div class="category-grid">
+          <button class="category-card" data-category="momo">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80" alt="Momo" /></div>
+            <strong>Momo</strong>
+          </button>
+          <button class="category-card" data-category="noodles">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=900&q=80" alt="Noodles" /></div>
+            <strong>Noodles</strong>
+          </button>
+
+          <button class="category-card" data-category="pizza">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80" alt="Pizza" /></div>
+            <strong>Pizza</strong>
+          </button>
+          <button class="category-card" data-category="burger">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" alt="Burger" /></div>
+            <strong>Burger</strong>
+          </button>
+          <button class="category-card" data-category="all">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" alt="All categories" /></div>
+            <strong>All</strong>
+          </button>
+        </div>
+      </section>
+
+      <section class="menu-section" id="menu">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Menu</span>
+            <h2>Top Picks for You</h2>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="veg">Veg</button>
+          <button class="filter-button" data-filter="nonveg">Non-Veg</button>
+          <button class="filter-button" data-filter="pizza">Pizza</button>
+          <button class="filter-button" data-filter="burger">Burger</button>
+          <button class="filter-button" data-filter="hot-drinks">Hot Drinks</button>
+          <button class="filter-button" data-filter="cold-drinks">Cold Drinks</button>
+          <span class="menu-result-count" id="menuResultCount" aria-live="polite"></span>
+        </div>
+
+        <div class="food-grid" id="foodGrid">
+          <!-- generated by JS -->
+        </div>
+
+        <div class="no-results" id="noResults">
+          <p>No food matched your search.</p>
+        </div>
+      </section>
+
+      <section class="offers-section" id="offers">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Offers</span>
+            <h2>Hot Deals</h2>
+          </div>
+        </div>
+
+        <div class="offer-grid">
+          <div class="offer-card offer-one">
+            <span class="deal-badge">Hot Deal</span>
+            <p>Limited time</p>
+            <h3>Flat 30% OFF</h3>
+            <button class="offer-button" data-offer="30% OFF">Claim Offer</button>
+          </div>
+          <div class="offer-card offer-two">
+            <span class="deal-badge">Hot Deal</span>
+            <p>Combo deal</p>
+            <h3>Buy 1 Get 1</h3>
+            <button class="offer-button" data-offer="Buy 1 Get 1">Grab Deal</button>
+          </div>
+          <div class="offer-card offer-three">
+            <span class="deal-badge">Hot Deal</span>
+            <p>Free shipping</p>
+            <h3>On orders above ₹500</h3>
+            <button class="offer-button" data-offer="Free Shipping">Apply</button>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="orders-section" id="orders">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Orders</span>
+            <h2>Recent Orders</h2>
+          </div>
+        </div>
+
+        <div class="orders-container" id="ordersContainer"></div>
+      </section>
+    </main>
+
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button id="closeCart">×</button>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">₹0</strong>
+        </div>
+        <div class="summary-row">
+          <span>Delivery</span>
+          <strong id="cartDelivery">₹0</strong>
+        </div>
+        <div class="summary-row">
+          <span>Tax</span>
+          <strong id="cartTax">₹0</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <strong id="cartTotal">₹0</strong>
+        </div>
+        <div class="delivery-progress" id="deliveryProgress" aria-live="polite">
+          <div class="delivery-progress-track"><span id="deliveryProgressBar"></span></div>
+          <small id="deliveryProgressText">Add food to unlock free delivery at ₹500.</small>
+        </div>
+      </div>
+
+      <button class="checkout-button" id="checkoutButton">Proceed to Checkout</button>
+      <button class="start-shopping" id="startShopping">Continue Shopping</button>
+    </aside>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="modal" id="foodModal">
+      <div class="modal-content food-modal">
+        <button class="modal-close" id="foodModalClose">×</button>
+        <div class="modal-food-image" id="modalFoodImage">🍔</div>
+        <div class="food-modal-details">
+          <span class="restaurant-name" id="modalRestaurant">Restaurant</span>
+          <h3 id="modalFoodName">Food Name</h3>
+          <div class="modal-rating" id="modalRating">★ 4.8</div>
+          <p id="modalFoodDescription">Description</p>
+          <div class="modal-footer">
+            <strong id="modalFoodPrice">₹0</strong>
+            <div class="quantity-box">
+              <button id="modalMinus">−</button>
+              <span id="modalQuantity">1</span>
+              <button id="modalPlus">+</button>
+            </div>
+          </div>
+          <button class="add-modal-button" id="modalAddButton">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+      <div class="modal-content checkout-modal">
+        <button class="modal-close" id="checkoutClose">×</button>
+        <h3>Checkout</h3>
+        <form id="checkoutForm">
+          <div class="form-row two-columns">
+            <input type="text" id="checkoutName" value="Bikram Thakur" placeholder="Full Name" required />
+            <input type="tel" id="checkoutPhone" value="+9779811328551" placeholder="Phone Number" required />
+          </div>
+          <input type="email" id="checkoutEmail" value="bikramthakur0123@gmail.com" placeholder="Email Address" required />
+          <input type="text" id="checkoutAddress" value="Nepal" placeholder="Street Address" required />
+          <div class="form-row two-columns">
+            <input type="text" id="checkoutCity" value="Kathmandu" placeholder="City" required />
+            <input type="text" id="checkoutPin" value="44600" placeholder="PIN Code" required />
+          </div>
+
+          <div class="payment-box">
+            <div class="payment-option">
+              <label><input type="radio" name="payment" value="Esewa" /> Esewa</label>
+              <a href="https://esewa.com.np/" target="_blank" rel="noopener noreferrer">Pay via eSewa</a>
+              <small>Account: +9779811328551</small>
+            </div>
+            <div class="payment-option">
+              <label><input type="radio" name="payment" value="Khalti" /> Khalti</label>
+              <a href="https://khalti.com/" target="_blank" rel="noopener noreferrer">Pay via Khalti</a>
+              <small>Account: +9779811328551</small>
+            </div>
+            <div class="payment-option">
+              <label><input type="radio" name="payment" value="NepalPay" /> NepalPay</label>
+              <small>Account: +9779811328551</small>
+            </div>
+            <div class="payment-option">
+              <label><input type="radio" name="payment" value="Cash on Delivery" checked /> Cash on Delivery</label>
+            </div>
+          </div>
+
+          <button type="submit" class="checkout-submit">Place Order</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="successModal">
+      <div class="modal-content success-modal">
+        <button class="modal-close" id="successClose">×</button>
+        <div class="success-emoji">✅</div>
+        <h3>Order Placed</h3>
+        <p id="successOrderId">Order ID: BIT123456</p>
+        <p>Your order has been placed successfully.</p>
+      </div>
+    </div>
+
+    <div class="modal" id="trackingModal">
+      <div class="modal-content tracking-modal">
+        <button class="modal-close" id="trackingClose">×</button>
+        <span class="section-tag">Live order status</span>
+        <h3 id="trackingTitle">Track Order</h3>
+        <p class="tracking-summary" id="trackingSummary"></p>
+        <div class="tracking-timeline" id="trackingTimeline"></div>
+      </div>
+    </div>
+
+    <div class="dashboard-toast" id="dashboardToast">
+      <div class="toast-icon" id="dashboardToastIcon">✓</div>
+      <div class="toast-content">
+        <strong id="dashboardToastTitle">Success</strong>
+        <p id="dashboardToastMessage">Message</p>
+      </div>
+      <button type="button" class="toast-close" id="dashboardToastClose">×</button>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>
