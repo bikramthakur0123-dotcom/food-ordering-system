@@ -21,7 +21,7 @@
         <div class="brand-icon">🍔</div>
         <div>
           <span class="brand-name">Biteora</span>
-          <small>Food & More</small>
+          <small>Field notes / edible extremes</small>
         </div>
       </div>
 
@@ -92,25 +92,29 @@
     <main>
       <section class="hero-section" id="home">
         <div class="hero-content">
-          <span class="section-badge">Fresh. Fast. Flavorful.</span>
-          <h1>Craving something delicious?</h1>
-          <p>Enjoy premium food from local favorites, prepared with care and delivered hot to your door.</p>
+          <span class="section-badge">Issue 01 / The unfamiliar table</span>
+          <h1>Eat outside the ordinary.</h1>
+          <p>A living catalogue of intense flavors, hard-earned techniques, and dishes that refuse to behave like dinner.</p>
           <div class="hero-actions">
-            <button id="showcaseButton" class="primary-button">Order Now</button>
-            <button class="secondary-button">View Menu</button>
+            <button id="showcaseButton" class="primary-button">Enter the catalogue</button>
+            <button class="secondary-button">Scan the menu</button>
+            <button id="surpriseButton" class="surprise-button" type="button" aria-controls="surpriseReveal">
+              <span class="surprise-button-mark">✳</span>
+              <span>SURPRISE ME</span>
+            </button>
           </div>
           <div class="hero-stats">
             <div>
               <strong>6k+</strong>
-              <span>Orders</span>
+              <span>Field notes</span>
             </div>
             <div>
               <strong>4.9/5</strong>
-              <span>Rating</span>
+              <span>Heat index</span>
             </div>
             <div>
               <strong>24/7</strong>
-              <span>Support</span>
+              <span>Open daily</span>
             </div>
           </div>
         </div>
@@ -137,35 +141,61 @@
         </div>
       </section>
 
+      <section class="surprise-reveal" id="surpriseReveal" aria-live="polite" aria-busy="false" hidden>
+        <div class="surprise-reveal-heading">
+          <span class="section-tag">Unscheduled encounter</span>
+          <p class="surprise-status" id="surpriseStatus">A field note has surfaced.</p>
+        </div>
+        <div class="surprise-reveal-card" id="surpriseRevealCard">
+          <div class="surprise-image-wrap">
+            <img id="surpriseImage" src="food-placeholder.png" alt="" />
+            <span class="surprise-index">FILE <b id="surpriseId">—</b></span>
+          </div>
+          <div class="surprise-copy">
+            <div class="surprise-kicker">
+              <span id="surpriseCategory">FIELD NOTE</span>
+              <span id="surpriseAvailability">ARCHIVE</span>
+            </div>
+            <h2 id="surpriseName">Waiting for a strange plate.</h2>
+            <p class="surprise-region" id="surpriseRegion"></p>
+            <p id="surpriseDescription"></p>
+            <blockquote id="surpriseHistory"></blockquote>
+            <div class="surprise-actions">
+              <button class="primary-button" id="surpriseStoryButton" type="button">Read the full story</button>
+              <button class="secondary-button" id="tryAgainButton" type="button">Try Again</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="categories" id="categories">
         <div class="section-header">
           <div>
-            <span class="section-tag">Browse</span>
-            <h2>Popular Categories</h2>
+            <span class="section-tag">Browse the evidence</span>
+            <h2>Foodways under pressure</h2>
           </div>
         </div>
 
         <div class="category-grid">
-          <button class="category-card" data-category="momo">
-            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80" alt="Momo" /></div>
-            <strong>Momo</strong>
+          <button class="category-card" data-category="offal">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Offal dishes" /></div>
+            <strong>Offal</strong>
           </button>
-          <button class="category-card" data-category="noodles">
-            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=900&q=80" alt="Noodles" /></div>
-            <strong>Noodles</strong>
+          <button class="category-card" data-category="insects">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1518877593221-1f28583780b4?auto=format&fit=crop&w=900&q=80" alt="Insect cuisine" /></div>
+            <strong>Insects</strong>
           </button>
-
-          <button class="category-card" data-category="pizza">
-            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80" alt="Pizza" /></div>
-            <strong>Pizza</strong>
+          <button class="category-card" data-category="reptiles">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=900&q=80" alt="Reptile cuisine" /></div>
+            <strong>Reptiles</strong>
           </button>
-          <button class="category-card" data-category="burger">
-            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" alt="Burger" /></div>
-            <strong>Burger</strong>
+          <button class="category-card" data-category="whole-animal">
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=900&q=80" alt="Whole-animal cooking" /></div>
+            <strong>Whole animal</strong>
           </button>
           <button class="category-card" data-category="all">
-            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" alt="All categories" /></div>
-            <strong>All</strong>
+            <div class="category-card-image"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80" alt="All catalogue entries" /></div>
+            <strong>All files</strong>
           </button>
         </div>
       </section>
@@ -173,24 +203,27 @@
       <section class="menu-section" id="menu">
         <div class="section-header">
           <div>
-            <span class="section-tag">Menu</span>
-            <h2>Top Picks for You</h2>
+            <span class="section-tag">The catalogue</span>
+            <h2>Nothing ordinary</h2>
           </div>
         </div>
 
         <div class="filter-bar">
-          <button class="filter-button active" data-filter="all">All</button>
-          <button class="filter-button" data-filter="veg">Veg</button>
-          <button class="filter-button" data-filter="nonveg">Non-Veg</button>
-          <button class="filter-button" data-filter="pizza">Pizza</button>
-          <button class="filter-button" data-filter="burger">Burger</button>
-          <button class="filter-button" data-filter="hot-drinks">Hot Drinks</button>
-          <button class="filter-button" data-filter="cold-drinks">Cold Drinks</button>
+          <button class="filter-button active" data-filter="all">All files</button>
+          <button class="filter-button" data-filter="offal">Offal</button>
+          <button class="filter-button" data-filter="insects">Insects</button>
+          <button class="filter-button" data-filter="reptiles">Reptiles</button>
+          <button class="filter-button" data-filter="molluscs">Molluscs</button>
+          <button class="filter-button" data-filter="blood-and-cured">Blood &amp; cured</button>
+          <button class="filter-button" data-filter="eggs">Eggs</button>
+          <button class="filter-button" data-filter="fermented">Fermented</button>
+          <button class="filter-button" data-filter="wild-game">Wild game</button>
+          <button class="filter-button" data-filter="whole-animal">Whole animal</button>
           <span class="menu-result-count" id="menuResultCount" aria-live="polite"></span>
         </div>
 
         <div class="food-grid" id="foodGrid">
-          <!-- generated by JS -->
+          <div class="menu-state">Loading field catalogue…</div>
         </div>
 
         <div class="no-results" id="noResults">
@@ -281,12 +314,20 @@
     <div class="modal" id="foodModal">
       <div class="modal-content food-modal">
         <button class="modal-close" id="foodModalClose">×</button>
-        <div class="modal-food-image" id="modalFoodImage">🍔</div>
+        <div class="modal-food-image" id="modalFoodImage">◌</div>
         <div class="food-modal-details">
           <span class="restaurant-name" id="modalRestaurant">Restaurant</span>
           <h3 id="modalFoodName">Food Name</h3>
           <div class="modal-rating" id="modalRating">★ 4.8</div>
           <p id="modalFoodDescription">Description</p>
+          <div class="food-dossier">
+            <div><span>History</span><p id="modalFoodHistory"></p></div>
+            <div><span>Preparation</span><p id="modalFoodPreparation"></p></div>
+            <div><span>Flavor file</span><p id="modalFoodFlavor"></p></div>
+            <div><span>Nutrition</span><p id="modalFoodNutrition"></p></div>
+            <div><span>Safety note</span><p id="modalFoodSafety"></p></div>
+            <div><span>Sources</span><p id="modalFoodSources"></p></div>
+          </div>
           <div class="modal-footer">
             <strong id="modalFoodPrice">₹0</strong>
             <div class="quantity-box">
@@ -370,6 +411,7 @@
       <button type="button" class="toast-close" id="dashboardToastClose">×</button>
     </div>
 
+    <script src="catalog-selection.js"></script>
     <script src="dashboard.js"></script>
   </body>
 </html>
