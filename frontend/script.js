@@ -32,9 +32,9 @@ const googleLogin = document.getElementById('googleLogin');
 const facebookLogin = document.getElementById('facebookLogin');
 const installAppButton = document.getElementById('installAppButton');
 const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const API_BASE = isLocalFrontend && window.location.port !== '5000'
+const API_BASE = window.BITEORA_API_BASE || (isLocalFrontend && window.location.port !== '5000'
   ? 'http://127.0.0.1:5000'
-  : '';
+  : '');
 let deferredInstallPrompt = null;
 let googleClientId = '';
 

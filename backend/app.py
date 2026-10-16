@@ -13,7 +13,10 @@ from flask_cors import CORS
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(PROJECT_ROOT, 'frontend')
-DB_PATH = os.path.join(PROJECT_ROOT, 'biteora.db')
+DB_PATH = os.environ.get(
+    'BITEORA_DB_PATH',
+    os.path.join('/tmp', 'biteora.db') if os.environ.get('VERCEL') else os.path.join(PROJECT_ROOT, 'biteora.db'),
+)
 GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID') or ''
 
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path='')

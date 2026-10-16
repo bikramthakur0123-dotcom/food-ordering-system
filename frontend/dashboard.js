@@ -59,7 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const surpriseHistory = $('#surpriseHistory');
   const surpriseStoryButton = $('#surpriseStoryButton');
   const tryAgainButton = $('#tryAgainButton');
-  const apiBase = window.location.port === '5000' ? '' : 'http://127.0.0.1:5000';
+  const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  const apiBase = window.BITEORA_API_BASE || (isLocalFrontend && window.location.port !== '5000'
+    ? 'http://127.0.0.1:5000'
+    : '');
 
   const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
   const isAdminUser = (userEmail || '').toLowerCase() === 'admin@biteora.com';

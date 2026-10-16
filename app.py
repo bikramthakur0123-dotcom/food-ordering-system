@@ -10,7 +10,10 @@ from flask import Flask, jsonify, request, send_from_directory, session
 from flask_cors import CORS
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, 'biteora.db')
+DB_PATH = os.environ.get(
+    'BITEORA_DB_PATH',
+    os.path.join('/tmp', 'biteora.db') if os.environ.get('VERCEL') else os.path.join(BASE_DIR, 'biteora.db'),
+)
 GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID') or ''
 
 app = Flask(__name__, static_folder='.', static_url_path='')
