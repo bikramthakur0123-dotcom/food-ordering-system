@@ -171,6 +171,9 @@ def init_db():
     conn.close()
 
 
+init_db()
+
+
 @app.route('/')
 def index():
     return send_from_directory(BASE_DIR, 'index.html')
